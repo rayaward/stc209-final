@@ -41,7 +41,7 @@ function init() {
     // makeSound();
     listener = new THREE.AudioListener();
     audio = new THREE.Audio( listener );
-    mediaElement = new Audio('https://www3.nd.edu/~dthain/courses/cse20211/fall2013/wavfile/sine.wav');
+    mediaElement = new Audio('lucky_dragons.mp3' );
     mediaElement.loop = true;
     mediaElement.play();
     console.log("Playing2");
