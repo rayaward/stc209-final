@@ -42,7 +42,7 @@ function init() {
     listener = new THREE.AudioListener();
     audio = new THREE.Audio( listener );
     var audioLoader = new THREE.AudioLoader();
-    audioLoader.load( '../media/luck_dragons.mp3', function( buffer ) {
+    audioLoader.load( '../media/lucky_dragons.mp3', function( buffer ) {
         audio.setBuffer( buffer );
         audio.setLoop( true );
         audio.setVolume( 0.5 );
