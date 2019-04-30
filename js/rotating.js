@@ -41,7 +41,7 @@ function init() {
     // makeSound();
     listener = new THREE.AudioListener();
     audio = new THREE.Audio( listener );
-    mediaElement = new Audio('../media/lucky_dragons.mp3');
+    mediaElement = new Audio('./../media/lucky_dragons.mp3');
     mediaElement.loop = true;
     mediaElement.play();
     console.log("Playing2");
