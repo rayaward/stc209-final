@@ -41,12 +41,13 @@ function init() {
     // makeSound();
     listener = new THREE.AudioListener();
     audio = new THREE.Audio( listener );
-    mediaElement = new Audio('../media/lucky_dragons.mp3');
-    mediaElement.loop = true;
-    mediaElement.play();
-    console.log("Playing2");
-    audio.setMediaElementSource( mediaElement );
-
+    var audioLoader = new THREE.AudioLoader();
+    audioLoader.load( './media/lucky_dragons.mp3', function( buffer ) {
+        audio.setBuffer( buffer );
+        audio.setLoop( true );
+        audio.setVolume( 0.5 );
+        audio.play();
+    });
     analyser = new THREE.AudioAnalyser( audio, 32 );
 
     // var pointLight = THREE.PointLight(0xffffff, 1.00, 0, 1);
