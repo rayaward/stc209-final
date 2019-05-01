@@ -68,8 +68,7 @@ function init() {
     scene.add(addSphere()); 
     var sphere2 = addSphere();
     sphere2.position.x = 3; 
-    //3, 8, 2);
-
+    
     // add the output of the renderer to the html element
     document.body.appendChild(renderer.domElement);
 
@@ -98,8 +97,12 @@ function render() {
     camera.position.z = z * Math.cos(control.rotSpeed) - x * Math.sin(control.rotSpeed);
     camera.lookAt(scene.position);
 
-    console.log(analyser.getAverageFrequency());
-    //console.log(analyser.getFrequencyData());
+    var x = analyser.getAverageFrequency();
+    var y = analyser.getAverageFrequency();
+    var z = analyser.getAverageFrequency();
+    console.log(analyser.getFrequencyData());
+
+    scene.add(makeSphere(x % 300, y %100, z % 200 ));
 
     requestAnimationFrame(render);
 }
