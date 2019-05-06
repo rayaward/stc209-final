@@ -29,7 +29,10 @@
         var value = (avg / 5000) * 5;
         console.log( 'avg: ' + avg + '/n value: ' + value + '/n');
         value = Math.round(value);
-        matProps.color = new THREE.Color(colorArr[value]);
+       // matProps.color = new THREE.Color(colorArr[value]);
+        matProps.assign(Color.prototype, {
+            setHex: colorArr[value]
+        })
         //matProps.color.g = g;
         //matProps.color.b = b;
         var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
