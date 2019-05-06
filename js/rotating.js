@@ -27,6 +27,8 @@ function init() {
     camera.position.y = 30;
     camera.position.z = 13;
     camera.lookAt(scene.position);
+
+    scene.position.x = -50;
     // create a render, sets the background color and the size
     renderer = new THREE.WebGLRenderer();
     renderer.setClearColor(0x000000, 1.0);
@@ -42,11 +44,13 @@ function init() {
     listener = new THREE.AudioListener();
     audio = new THREE.Audio( listener );
     var audioLoader = new THREE.AudioLoader();
-    audioLoader.load( './media/lucky_dragons.mp3', function( buffer ) {
+    audioLoader.load( './media/wild.mp3', function( buffer ) {
+    //audioLoader.load( 'https://drive.google.com/file/d/1l-DLbSz-EH2kip9qxX9ARiGZQJKQ-GZY/view?usp=sharing', function( buffer ) {
         audio.setBuffer( buffer );
         audio.setLoop( true );
         audio.setVolume( 0.5 );
         audio.play();
+        audio.detune = 4; 
     });
     analyser = new THREE.AudioAnalyser( audio, 32 );
 
@@ -84,6 +88,27 @@ function init() {
     render();
 }
 
+function getLow(arr) {
+    return (arr[0] + arr[1] + arr[2] + arr[3] + arr[4]);
+}
+
+function getMid(arr) {
+    return (arr[5] + arr[6] + arr[7] + arr[8] + arr[9] + arr[10]);
+}
+
+function getHigh(arr) {
+    return (arr[11] + arr[12] + arr[13] + arr[14] + arr[15]);
+}
+
+function getAll(arr) {
+    var sum = 0;
+    var i;  
+    for (i = 0; i < 16; i++) {
+        sum += arr[i];
+    }
+    return sum; 
+}
+
 
 function addControls(controlObject) {
     var gui = new dat.GUI();
@@ -98,12 +123,14 @@ function render() {
     camera.position.z = z * Math.cos(control.rotSpeed) - x * Math.sin(control.rotSpeed);
     camera.lookAt(scene.position);
 
-    var x = analyser.getAverageFrequency();
-    var y = analyser.getAverageFrequency();
-    var z = analyser.getAverageFrequency();
-    console.log(analyser.getFrequencyData());
+    let freqData = analyser.getFrequencyData();
+    var sum = getAll(freqData);
+    var x = getLow(freqData);
+    var y = getMid(freqData);
+    var z = getHigh(freqData);
+    var avg = analyser.getAverageFrequency(); 
 
-    scene.add(makeSphere(x % 300, y %100, z % 200 ));
+    scene.add(makeSphere(x, y , z, avg));
 
     requestAnimationFrame(render);
 }
