@@ -34,7 +34,6 @@ function makeSphere(x, y, z, avg) {
     var sphereGeometry = new THREE.SphereGeometry(.5);
     var matProps = {
         specular: '#a9fcff',
-        color: '#020305',
         emissive: '#006063',
         shininess: 10
     }
