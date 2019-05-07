@@ -30,28 +30,97 @@ function addSphere() {
     return sphereMesh;
 }
 
-function makeSphere(x, y, z, avg) {
+function makeBlueSphere(x, y, z) {
     var sphereGeometry = new THREE.SphereGeometry(.5);
     var matProps = {
         specular: '#a9fcff',
-        emissive: '#006063',
+        color: '#acbed8',
+        emissive: '#acbed8',
         shininess: 10
     }
-
-    //create array of colors 
-    //white,blue, yellow, orange, red
-    var colorArr = [0xe8ebf7, 0xacbed8, 0xf2d398, 0xd78521, 0xDE1A1A];
-    var value = (avg / 5000) * 5;
-    console.log( 'avg: ' + avg + '/n value: ' + value + '/n');
-    value = Math.round(value);
-    matProps.color = new THREE.Color(colorArr[value]);
 
     var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
     var sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
     sphereMesh.castShadow = true;
-    sphereMesh.position.x = (x % 50) - (Math.random() * 40);
-    sphereMesh.position.y = (y % 50) - (Math.random() * 40);
-    sphereMesh.position.z = (z % 50) - (Math.random() * 40);
+    sphereMesh.position.x = (x % 50) - 20 + (Math.random() * 60);
+    sphereMesh.position.y = (y % 20) - 10 + (Math.random() * 40);
+    sphereMesh.position.z = (z % 20) - 30 + (Math.random() * 60);
+    sphereMesh.name = 'sphere';
+    return sphereMesh;
+}
+
+function makeWhiteSphere(x, y, z) {
+    var sphereGeometry = new THREE.SphereGeometry(.5);
+    var matProps = {
+        specular: '#a9fcff',
+        color: '#e8ebf7',
+        emissive: '#e8ebf7',
+        shininess: 10
+    }
+
+    var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
+    var sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    sphereMesh.castShadow = true;
+    sphereMesh.position.x = (x % 50) - 20 + (Math.random() * 60);
+    sphereMesh.position.y = (y % 20) - 10 + (Math.random() * 40);
+    sphereMesh.position.z = (z % 20) - 30 + (Math.random() * 60);
+    sphereMesh.name = 'sphere';
+    return sphereMesh;
+}
+
+function makeRedSphere(x, y, z) {
+    var sphereGeometry = new THREE.SphereGeometry(.5);
+    var matProps = {
+        specular: '#a9fcff',
+        color: '#de1a1a',
+        emissive: '#de1a1a',
+        shininess: 10
+    }
+
+    var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
+    var sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    sphereMesh.castShadow = true;
+    sphereMesh.position.x = (x % 50) - 20 + (Math.random() * 60);
+    sphereMesh.position.y = (y % 20) - 10 + (Math.random() * 40);
+    sphereMesh.position.z = (z % 20) - 30 + (Math.random() * 60);
+    sphereMesh.name = 'sphere';
+    return sphereMesh;
+}
+
+function makeYellowSphere(x, y, z) {
+    var sphereGeometry = new THREE.SphereGeometry(.5);
+    var matProps = {
+        specular: '#a9fcff',
+        color: '#f2d398',
+        emissive: '#f2d398',
+        shininess: 10
+    }
+
+    var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
+    var sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    sphereMesh.castShadow = true;
+    sphereMesh.position.x = (x % 50) - 20 + (Math.random() * 60);
+    sphereMesh.position.y = (y % 20) - 10 + (Math.random() * 40);
+    sphereMesh.position.z = (z % 20) - 30 + (Math.random() * 60);
+    sphereMesh.name = 'sphere';
+    return sphereMesh;
+}
+
+function makeOrangeSphere(x, y, z) {
+    var sphereGeometry = new THREE.SphereGeometry(.5);
+    var matProps = {
+        specular: '#a9fcff',
+        color: '#d78521',
+        emissive: '#d78521',
+        shininess: 10
+    }
+
+    var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
+    var sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    sphereMesh.castShadow = true;
+    sphereMesh.position.x = (x % 50) - 20 + (Math.random() * 60);
+    sphereMesh.position.y = (y % 20) - 10 + (Math.random() * 40);
+    sphereMesh.position.z = (z % 20) - 30 + (Math.random() * 60);
     sphereMesh.name = 'sphere';
     return sphereMesh;
 }
@@ -154,15 +223,26 @@ function init() {
     listener = new THREE.AudioListener();
     audio = new THREE.Audio( listener );
     var audioLoader = new THREE.AudioLoader();
-    audioLoader.load( './media/wild.mp3', function( buffer ) {
+    audioLoader.load( './media/audio.m4a', function( buffer ) {
     //audioLoader.load( 'https://drive.google.com/file/d/1l-DLbSz-EH2kip9qxX9ARiGZQJKQ-GZY/view?usp=sharing', function( buffer ) {
         audio.setBuffer( buffer );
         audio.setLoop( true );
-        audio.setVolume( 0.5 );
+        audio.setVolume( 5.0);
         audio.play();
         audio.detune = 4; 
     });
     analyser = new THREE.AudioAnalyser( audio, 32 );
+
+    list2 = new THREE.AudioListener();
+    audio2 = new THREE.Audio( list2 );
+    var audioLoader2 = new THREE.AudioLoader();
+    audioLoader2.load( './media/ford. - sirens.mp3', function( buffer ) {
+    //audioLoader.load( 'https://drive.google.com/file/d/1l-DLbSz-EH2kip9qxX9ARiGZQJKQ-GZY/view?usp=sharing', function( buffer ) {
+        audio2.setBuffer( buffer );
+        audio2.setLoop( true );
+        audio2.setVolume( 0.05 );
+        audio2.play();
+    });
 
     
     // add elements
@@ -236,9 +316,16 @@ function render() {
     var x = getLow(freqData);
     var y = getMid(freqData);
     var z = getHigh(freqData);
-    var avg = analyser.getAverageFrequency(); 
 
-    scene.add(makeSphere(x, y , z, avg));
+    //var avg = analyser.getAverageFrequency(); 
+    var value = Math.floor(Math.random() * 5) + 1 ;
+
+    // make sphere in color according to average value 
+    if (value == 1) scene.add(makeWhiteSphere(x, y , z));    
+    if (value == 2) scene.add(makeBlueSphere(x, y , z)); 
+    if (value == 3) scene.add(makeYellowSphere(x, y , z)); 
+    if (value == 4) scene.add(makeOrangeSphere(x, y , z)); 
+    if (value == 5) scene.add(makeRedSphere(x, y , z)); 
 
     requestAnimationFrame(render);
 }
