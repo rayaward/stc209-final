@@ -40,16 +40,16 @@ function makeSphere(x, y, z) {
         shininess: 10
     }
 
-        // create array of colors 
-        // white,blue, yellow, orange, red
-        //var colorArr = [0xe8ebf7, 0xacbed8, 0xf2d398, 0xd78521, 0xDE1A1A];
-        //var value = (avg / 5000) * 5;
-        //console.log( 'avg: ' + avg + '/n value: ' + value + '/n');
-        //value = Math.round(value);
-       // matProps.color = new THREE.Color(colorArr[value]);
-        //matProps.assign(Color.prototype, {
-           //setHex: colorArr[value]
-        //})
+    //create array of colors 
+    //white,blue, yellow, orange, red
+    var colorArr = [0xe8ebf7, 0xacbed8, 0xf2d398, 0xd78521, 0xDE1A1A];
+    var value = (avg / 5000) * 5;
+    console.log( 'avg: ' + avg + '/n value: ' + value + '/n');
+    value = Math.round(value);
+    //matProps.color = new THREE.Color(colorArr[value]);
+    matProps.assign(Color.prototype, {
+        setHex: colorArr[value]
+    })
 
     var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
     var sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
@@ -62,7 +62,7 @@ function makeSphere(x, y, z) {
 }
 
 
-function getTable() {
+function makeTable() {
     var cubeGeometry = new THREE.BoxGeometry(6, .25, 4);
     var cubeMaterial = new THREE.MeshLambertMaterial({color: 0xf2d398});
     var cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
@@ -175,8 +175,8 @@ function init() {
 
     
     // add elements
-    //var table = getTable();
-    //scene.add( table );
+    var table = makeTable();
+    scene.add( table );
 
     var plane = getPlane();
     plane.rotation.x = Math.PI/2;
