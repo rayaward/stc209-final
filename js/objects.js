@@ -15,7 +15,7 @@
         return sphereMesh;
     }
 
-    function makeSphere(x, y, z, avg) {
+    function makeSphere(x, y, z) {
         var sphereGeometry = new THREE.SphereGeometry(.5);
         var matProps = {
             specular: '#a9fcff',
