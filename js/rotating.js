@@ -175,8 +175,8 @@ function init() {
 
     
     // add elements
-    var table = getTable();
-    scene.add( table );
+    //var table = getTable();
+    //scene.add( table );
 
     var plane = getPlane();
     plane.rotation.x = Math.PI/2;
