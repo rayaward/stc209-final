@@ -7,7 +7,7 @@
             emissive: '#006063',
             shininess: 10
         }
-        var sphereMaterial = new THREE.MeshPhongMaterial(matProps);≈
+        var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
         var sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
         sphereMesh.castShadow = true;
         sphereMesh.position.y = 0.75 * Math.PI / 2;
