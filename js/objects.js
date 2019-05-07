@@ -19,22 +19,22 @@
         var sphereGeometry = new THREE.SphereGeometry(.5);
         var matProps = {
             specular: '#a9fcff',
+            color: '#020305',
             emissive: '#006063',
             shininess: 10
         }
 
         // create array of colors 
         // white,blue, yellow, orange, red
-        var colorArr = [0xe8ebf7, 0xacbed8, 0xf2d398, 0xd78521, 0xDE1A1A];
-        var value = (avg / 5000) * 5;
-        console.log( 'avg: ' + avg + '/n value: ' + value + '/n');
-        value = Math.round(value);
+        //var colorArr = [0xe8ebf7, 0xacbed8, 0xf2d398, 0xd78521, 0xDE1A1A];
+        //var value = (avg / 5000) * 5;
+        //console.log( 'avg: ' + avg + '/n value: ' + value + '/n');
+        //value = Math.round(value);
        // matProps.color = new THREE.Color(colorArr[value]);
-        matProps.assign(Color.prototype, {
-            setHex: colorArr[value]
-        })
-        //matProps.color.g = g;
-        //matProps.color.b = b;
+        //matProps.assign(Color.prototype, {
+           //setHex: colorArr[value]
+        //})
+    
         var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
         var sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
         sphereMesh.castShadow = true;
