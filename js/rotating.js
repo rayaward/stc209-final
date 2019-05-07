@@ -19,7 +19,6 @@ function addSphere() {
     var sphereGeometry = new THREE.SphereGeometry(1.5, 20, 20);
     var matProps = {
         specular: '#a9fcff',
-        color: '#DE1A1A',
         emissive: '#006063',
         shininess: 10
     }
@@ -31,7 +30,7 @@ function addSphere() {
     return sphereMesh;
 }
 
-function makeSphere(x, y, z) {
+function makeSphere(x, y, z, avg) {
     var sphereGeometry = new THREE.SphereGeometry(.5);
     var matProps = {
         specular: '#a9fcff',
@@ -46,10 +45,7 @@ function makeSphere(x, y, z) {
     var value = (avg / 5000) * 5;
     console.log( 'avg: ' + avg + '/n value: ' + value + '/n');
     value = Math.round(value);
-    //matProps.color = new THREE.Color(colorArr[value]);
-    matProps.assign(Color.prototype, {
-        setHex: colorArr[value]
-    })
+    matProps.color = new THREE.Color(colorArr[value]);
 
     var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
     var sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
@@ -169,10 +165,6 @@ function init() {
     });
     analyser = new THREE.AudioAnalyser( audio, 32 );
 
-    // var pointLight = THREE.PointLight(0xffffff, 1.00, 0, 1);
-    // // pointLight.position.set (-5.866, 5.490, -3.614);
-    // scene.add(pointLight);
-
     
     // add elements
     var table = makeTable();
@@ -197,11 +189,13 @@ function init() {
         this.rotSpeed = 0.005;
         this.scale = 1;
     };
-    addControls(control);
+    // addControls(control);
 
     // call the render function
     render();
 }
+
+//------------------------------------------------------------------------------------------------------------------
 
 function getLow(arr) {
     return (arr[0] + arr[1] + arr[2] + arr[3] + arr[4]);
@@ -225,10 +219,10 @@ function getAll(arr) {
 }
 
 
-function addControls(controlObject) {
-    var gui = new dat.GUI();
-    gui.add(controlObject, 'rotSpeed', -0.1, 0.1);
-}
+// function addControls(controlObject) {
+//     var gui = new dat.GUI();
+//     gui.add(controlObject, 'rotSpeed', -0.1, 0.1);
+// }
 
 function render() {
     renderer.render(scene, camera);
@@ -243,9 +237,9 @@ function render() {
     var x = getLow(freqData);
     var y = getMid(freqData);
     var z = getHigh(freqData);
-    // var avg = analyser.getAverageFrequency(); 
+    var avg = analyser.getAverageFrequency(); 
 
-    scene.add(makeSphere(x, y , z));
+    scene.add(makeSphere(x, y , z, avg));
 
     requestAnimationFrame(render);
 }
