@@ -99,9 +99,9 @@ function makeYellowSphere(x, y, z) {
     var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
     var sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
     sphereMesh.castShadow = true;
-    sphereMesh.position.x = (x % 50) - 20 + (Math.random() * 60);
-    sphereMesh.position.y = (y % 20) - 10 + (Math.random() * 40);
-    sphereMesh.position.z = (z % 20) - 30 + (Math.random() * 60);
+    sphereMesh.position.x = (x % 50) - 100 + (Math.random() * 120);
+    sphereMesh.position.y = (y % 20) - 10 + (Math.random() * 120);
+    sphereMesh.position.z = (z % 20) - 60 + (Math.random() * 120);
     sphereMesh.name = 'sphere';
     return sphereMesh;
 }
@@ -118,7 +118,7 @@ function makeOrangeSphere(x, y, z) {
     var sphereMaterial = new THREE.MeshPhongMaterial(matProps);
     var sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
     sphereMesh.castShadow = true;
-    sphereMesh.position.x = (x % 50) - 20 + (Math.random() * 60);
+    sphereMesh.position.x = (x % 50) - 20 + (Math.random() * 80);
     sphereMesh.position.y = (y % 20) - 10 + (Math.random() * 40);
     sphereMesh.position.z = (z % 20) - 30 + (Math.random() * 60);
     sphereMesh.name = 'sphere';
